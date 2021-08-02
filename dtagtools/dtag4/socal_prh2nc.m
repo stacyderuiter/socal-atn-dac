@@ -56,20 +56,22 @@ end
 if dtagtype(depid, 1) == 3,
     try
         [CAL, DEPLOY] =  d3loadcal(depid) ;
-        TAGON = DEPLOY.TAGON ;
+       % TAGON = DEPLOY.TAGON ;
         if isstruct(TAGON)
             TAGLOC = TAGON.POSITION ;
-            TAGON = TAGON.TAGON ;
+           % TAGON = TAGON.TAGON ;
         end
         OTAB = DEPLOY.OTAB ;
         TAGID = DEPLOY.ID ;
         [CUETAB,ref_time,fs,fn,recdir,recn] = d3getcues([],[depid(1:2), depid(6:9)],'swv') ;
         info = make_info(depid, 'D3', depid(1:2), owner) ;
+        TAGON = d3datevec(ref_time) ;
     catch
         fprintf('Trying short depid without year...\n')
         try
             % some tagouts have short name without year on dtg files
             [CUETAB,ref_time,fs,fn,recdir,recn] = d3getcues([],[depid(1:2), depid(6:9)],'swv');
+            TAGON = d3datevec(ref_time) ;
             info = make_info([depid(1:2) depid(6:9)], 'D3', depid(1:2), owner) ;
             info.depid = depid ;
         catch
@@ -81,13 +83,24 @@ if dtagtype(depid, 1) == 3,
 elseif dtagtype(depid,1)==2,
 	try
 		loadcal(depid) ;
+        % note: DTAG2 TAGON is in LOCAL time
+        % should have CAL variable GMT2LOC or UTC2LOC for conversion
+        if exist('GMT2LOC', 'var')
+            UTC2LOC = GMT2LOC ;
+        end
+        if exist('UTC2LOC', 'var') && exist('TAGON', 'var')
+            % convert from local to UTC
+            TAGON(4) = TAGON(4) - UTC2LOC ; 
+        else % assume socal in summer, so UTC2LOC = -7
+            TAGON(4) = TAGON(4) + 7 ;
+        end
 	catch
 		fprintf('No cal file for this deployment\n')
 		return
 	end
 	info = make_info(depid,'D2',depid(1:2),owner) ;
 else
-	[c,TAGON,s,ttype,ffs,TAGID,wavfname,ndigits]=tagcue(0,depid)
+	[c,TAGON,s,ttype,ffs,TAGID,wavfname,ndigits]=tagcue(0,depid);
 	info = make_info(depid,'D1',depid(1:2),owner) ;
 	CUETAB = [] ;
 end
@@ -96,8 +109,8 @@ ton = datestr(TAGON(:)',info.dephist_device_regset) ;
 info.dephist_deploy_datetime_start = ton ;
 info.dephist_device_datetime_start = ton ;
 info.device_serial = TAGID ;
-if exist('CUETAB','var') & ~isempty(CUETAB),
-   if isstruct(CUETAB),
+if exist('CUETAB','var') && ~isempty(CUETAB)
+   if isstruct(CUETAB)
       CUETAB = CUETAB.N ;
    end
 	info.dtype_nfiles = size(CUETAB,1) ;

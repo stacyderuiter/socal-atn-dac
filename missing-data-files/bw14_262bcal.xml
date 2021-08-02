@@ -1,0 +1,126 @@
+<DEPLOY class="struct" size="1 1">
+<ID class="char" size="1 8">4B031D29</ID>
+<NAME class="char" size="1 4">D143</NAME>
+<RECN class="double" size="5 1">1 2 3 4 5</RECN>
+<RECDIR class="char" size="1 27">d#58;#92;tag#92;data#92;bw14#92;bw14#95;262b#92;</RECDIR>
+<FN class="cell" size="1 5">
+<cell class="char" size="1 9">bw262b001</cell>
+<cell class="char" size="1 9">bw262b002</cell>
+<cell class="char" size="1 9">bw262b003</cell>
+<cell class="char" size="1 9">bw262b004</cell>
+<cell class="char" size="1 9">bw262b005</cell>
+</FN>
+<SCUES class="struct" size="1 1">
+<SAMPLE class="double" size="1 5">0 0 0 0 0</SAMPLE>
+<TIME class="double" size="5 6">2014 2014 2014 2014 2014 9 9 9 9 9 19 19 19 19 19 15 16 17 18 19 52 50 50 48 47 40.040629 55.400629 54.920629 35.240631 40.520629</TIME>
+<N class="double" size="1 5">87384 89988 86508 88632 8316</N>
+<TERR class="double" size="1 5">0 0 0 2e-06 -2e-06</TERR>
+<SSTART class="double" size="1 6">2014 9 19 15 52 40.040629</SSTART>
+</SCUES>
+<CAL class="struct" size="1 1">
+<TEMPR class="struct" size="1 1">
+<TYPE class="char" size="1 14">ntc#32;thermistor</TYPE>
+<USE class="char" size="1 8">conv#95;ntc</USE>
+<UNIT class="char" size="1 15">degrees#32;Celcius</UNIT>
+<METHOD class="char" size="1 4">none</METHOD>
+</TEMPR>
+<BATT class="struct" size="1 1">
+<POLY class="double" size="1 2">6.615 0</POLY>
+<UNIT class="char" size="1 4">Volt</UNIT>
+</BATT>
+<PRESS class="struct" size="1 1">
+<POLY class="double" size="1 3">-8.98 2917.47 -156.68922</POLY>
+<METHOD class="char" size="1 9">surfacing</METHOD>
+<LASTCAL class="double" size="1 6">2015 2 11 13 31 14.818</LASTCAL>
+<TREF class="double" size="1 1">20</TREF>
+<UNIT class="char" size="1 15">meters#32;H20#32;salt</UNIT>
+<TC class="struct" size="1 1">
+<POLY class="double" size="1 3">-0.026746 -1.7573 0</POLY>
+<SRC class="char" size="1 6">bridge</SRC>
+</TC>
+<BRIDGE class="struct" size="1 1">
+<NEG class="struct" size="1 1">
+<POLY class="double" size="1 2">3 0</POLY>
+<UNIT class="char" size="1 4">Volt</UNIT>
+</NEG>
+<POS class="struct" size="1 1">
+<POLY class="double" size="1 2">6 0</POLY>
+<UNIT class="char" size="1 4">Volt</UNIT>
+</POS>
+<RSENSE class="double" size="1 1">200</RSENSE>
+<TEMPR class="struct" size="1 1">
+<POLY class="double" size="1 2">314 -634.7</POLY>
+<UNIT class="char" size="1 15">degrees#32;Celcius</UNIT>
+</TEMPR>
+</BRIDGE>
+<CALTIMESPAN class="double" size="1 2">0 13022.7788</CALTIMESPAN>
+<CALTIMESPANUNIT class="char" size="1 7">seconds</CALTIMESPANUNIT>
+</PRESS>
+<ACC class="struct" size="1 1">
+<TYPE class="char" size="1 18">MEMS#32;accelerometer</TYPE>
+<POLY class="double" size="3 2">4.9269 4.9169 5.0549 -2.4232 -2.4496 -2.5521</POLY>
+<UNIT class="char" size="1 1">g</UNIT>
+<TREF class="double" size="1 1">20</TREF>
+<TC class="struct" size="1 1">
+<POLY class="double" size="3 2">9.5445e-05 -0.00039085 -0.0008801 0 0 0</POLY>
+</TC>
+<PC class="struct" size="1 1">
+<POLY class="double" size="3 2">-1.0172e-05 -9.3572e-06 -0.00010587 0 0 0</POLY>
+</PC>
+<XC class="double" size="3 3">0 0 -0.0042737 0 0 -0.0036481 -0.0042737 -0.0036481 0</XC>
+<MAP class="double" size="3 3">-1 0 0 0 1 0 0 0 1</MAP>
+<MAPRULE class="char" size="1 16">front#45;right#45;down</MAPRULE>
+<METHOD class="char" size="1 4">data</METHOD>
+<LASTCAL class="double" size="1 6">2015 2 11 13 33 38.614</LASTCAL>
+<CALTIMESPAN class="double" size="1 2">0 13083.1797</CALTIMESPAN>
+<CALTIMESPANUNIT class="char" size="1 7">seconds</CALTIMESPANUNIT>
+</ACC>
+<MAG class="struct" size="1 1">
+<TYPE class="char" size="1 23">magnetoresistive#32;bridge</TYPE>
+<POLY class="double" size="3 2">713.3651 730.5675 729.03 -33.19881 5.750898 -10.01871</POLY>
+<UNIT class="char" size="1 5">Tesla</UNIT>
+<TREF class="double" size="1 1">20</TREF>
+<TC class="struct" size="1 1">
+<POLY class="double" size="3 1">0 0 0</POLY>
+<SRC class="char" size="1 6">BRIDGE</SRC>
+</TC>
+<PC class="struct" size="1 1">
+<POLY class="double" size="3 2">5.6017e-05 -0.002256 -0.00054952 0 0 0</POLY>
+</PC>
+<XC class="double" size="3 3">0 0 0.022229 0 0 -0.0077409 0.022229 -0.0077409 0</XC>
+<MAP class="double" size="3 3">0 1 0 1 0 0 0 0 1</MAP>
+<MAPRULE class="char" size="1 16">front#45;right#45;down</MAPRULE>
+<METHOD class="char" size="1 4">data</METHOD>
+<LASTCAL class="double" size="1 6">2015 2 11 13 34 3.756</LASTCAL>
+<BRIDGE class="struct" size="1 1">
+<NEG class="struct" size="1 1">
+<POLY class="double" size="1 2">3 0</POLY>
+<UNIT class="char" size="1 4">Volt</UNIT>
+</NEG>
+<POS class="struct" size="1 1">
+<POLY class="double" size="1 2">6 0</POLY>
+<UNIT class="char" size="1 4">Volt</UNIT>
+</POS>
+<RSENSE class="double" size="1 1">20</RSENSE>
+<TEMPR class="struct" size="1 1">
+<POLY class="double" size="1 2">541.91 -459.24</POLY>
+<UNIT class="char" size="1 15">degrees#32;Celcius</UNIT>
+</TEMPR>
+</BRIDGE>
+<CALTIMESPAN class="double" size="1 2">5 13022.7788</CALTIMESPAN>
+<CALTIMESPANUNIT class="char" size="1 7">seconds</CALTIMESPANUNIT>
+</MAG>
+<SRC class="struct" size="1 1">
+<ID class="char" size="1 8">4b031d29</ID>
+<NAME class="char" size="1 4">D143</NAME>
+</SRC>
+</CAL>
+<OTAB class="double" size="5 5">0 2616 8457 11036 11037 0 2616 8457 11036 12937 -0.0872664626 0.226892803 0.0733 -0.2411 -0.0872664626 0.314159265 0.0174532925 0.0733 -0.292 -0.663225116 0.104719755 1.20427718 1.0245 0.2443 0.401425728</OTAB>
+<LOCATION class="char" size="1 5">SoCal</LOCATION>
+<TAGON class="struct" size="1 1">
+<POSITION class="double" size="1 2">33.5517 -118.0455</POSITION>
+<TAGON class="double" size="1 6">2014 9 19 15 52 38</TAGON>
+</TAGON>
+<DECL class="double" size="1 1">12.13</DECL>
+<UTC2LOC class="double" size="1 1">-7</UTC2LOC>
+</DEPLOY>

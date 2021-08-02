@@ -28,10 +28,11 @@ X.name = 'SA' ;
 X.full_name = 'sound_archive' ;
 X.description = 'Sound data archive listing' ;
 
+
 [ct,ref_time,fs,fn] = d3getcues([],depid) ;
 if isempty(fn),
-	fprintf('No directory for this deployment - run d3getcues\n') ;
-	return
+    fprintf('No directory for this deployment - run d3getcues\n') ;
+    return
 end
 
 sz = zeros(length(fn),1) ;
