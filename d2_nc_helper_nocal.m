@@ -25,7 +25,7 @@ savepath
 % 2-letter Latin species initials, 2-digit year, underscore,
 % 3-digit Julian day of year, 1-letter animal of the day.
 % This should match THE DTG FILE NAMES
-depid = 'bw214b' ;
+depid =  'bw214b' ;
 
 % Make a name for the nc file that you are going to create. Make sure the
 % year is included in this one

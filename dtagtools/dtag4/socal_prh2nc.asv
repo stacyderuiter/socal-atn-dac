@@ -61,7 +61,7 @@ recdir(recdir=='\') = '/' ;      % use / for MAC compatibility
 fname = sprintf('%s%s.nc',ncdir,depid) ;
 
 
-if nargin < 7
+if nargin < 6
    vars = [] ;
 end
 
@@ -146,15 +146,15 @@ if exist('TAGLOC','var'),
 	info.dephist_deploy_location_lat = TAGLOC(1) ;
 	info.dephist_deploy_location_lon = TAGLOC(2) ;
 end
-
+if ~isempty(project),
+	run(project)
+end
 if exist('p','var') && (isempty(vars) || any(strcmp('p',vars)))
     % can not do in project file b/c need sensor data to do it
     % generate ISO 8601 duration string
     % "ISO 8601 Durations are expressed using the following format, 
     % where (n) is replaced by the value for each of the date and time
-    % elements that follow the (n): P(n)Y(n)M(n)DT(n)H(n)M(n)S
-    %  aaaargh Matlab could you not have a function for this?
-    % (should save this as one...)
+    % elements that follow the (n):P(n)Y(n)M(n)DT(n)H(n)M(n)S
     dur = length(p) / fs ;
     ml_dur = calendarDuration(0,0,0,0,0,dur); %matlab caldur object
     dur_time = strsplit(string(time(ml_dur)), ':') ;
@@ -165,13 +165,11 @@ if exist('p','var') && (isempty(vars) || any(strcmp('p',vars)))
         num2str(str2double(dur_time(2))), 'M', ...
         num2str(str2double(dur_time(3))), 'S'}), '') ;
     info.time_coverage_duration =  dur_string;
-    info.time_coverage_duration_seconds = num2str(dur) ;
 end
+info.time_coverage_duration % need to get from sensor data?
+info.time_coverage_end % need to get from sensor data?
 
-if ~isempty(project),
-	run(project)
 end
-
 
 save_nc(fname,info) ;
 

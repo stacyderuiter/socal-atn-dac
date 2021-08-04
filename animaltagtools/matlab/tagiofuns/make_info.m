@@ -97,6 +97,9 @@ if any(strcmp(T.device_make,{'DTAG','SMRT'})),
    T.dtype_nfiles = length(C.fn) ;
    T.dtype_source = reshape([strvcat(C.fn) repmat(',',length(C.fn),1)]',1,[]) ;
    T.device_serial = C.id ;
+   if (isnumeric(T.device_serial))
+       T.device_serial = num2str(C.id); % prevent having .00 tacked on end
+   end
    T.dephist_deploy_datetime_start = datestr(d3datevec(C.ref_time),T.dephist_device_regset) ;
    T.dephist_device_datetime_start = T.dephist_deploy_datetime_start ;
 	catch
@@ -111,7 +114,10 @@ if nargin>2,
       T.animal_dbase_url = S.URL ;
 		if isfield(S,'ITIS'),
 			T.animal_dbase_itis = S.ITIS ;
-		end
+        end
+        if isfield(S,'AphiaID')
+            T.AphiaID = S.AphiaID ;
+        end
    end
 
    if nargin>3,

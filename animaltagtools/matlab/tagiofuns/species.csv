@@ -1,24 +1,24 @@
-Initial,Common_name,Binomial,URL
-zc,Cuvier's beaked whale,Ziphius cavirostris,
-pm,Sperm whale,Physeter macrocephalus,
-md,Blainville's beaked whale,Mesoplodon densirostris,
-gm,Short-finned pilot whale,Globicephala macrorhynchus,
-ml,Southern elephant seal,Mirounga leonina,
-pv,Harbour or common seal,Phoca vitulina,
-hs,Harbour or common seal,Phoca vitulina,
-lw,Weddell seal,Leptonychotes weddellii,
-pp,Harbour porpoise,Phocoena phocoena,
-hp,Harbour porpoise,Phocoena phocoena,
-dl,Beluga,Delphinapterus leucas,
-pa,Adelie penguin,Pygoscelis adeliae,
-bm,Bowhead whale,Balaena mysticetus,
-bm,Blue whale,Balaenoptera musculus,
-bw,Blue whale,Balaenoptera musculus,
-mn,Humpback whale,Megaptera novaeangliae,
-eg,North atlantic right whale,Eubalaena glacialis,
-rw,North atlantic right whale,Eubalaena glacialis,
-mb,Sowerby's beaked whale,Mesoplodon bidens,
-bb,Bryde's whale,Balaenoptera brydei,
-gm,Long-finned pilot whale,Globicephala melas,
-pw,Long-finned pilot whale,Globicephala melas,
-bp,Fin whale,Balaenoptera physalus,
+Initial,Common_name,Binomial,URL,AphiaID
+zc,Cuvier's beaked whale,Ziphius cavirostris,,137127
+pm,Sperm whale,Physeter macrocephalus,,137119
+md,Blainville's beaked whale,Mesoplodon densirostris,,137122
+gm,Short-finned pilot whale,Globicephala macrorhynchus,,137096
+ml,Southern elephant seal,Mirounga leonina,,231413
+pv,Harbour or common seal,Phoca vitulina,,137084
+hs,Harbour or common seal,Phoca vitulina,,137084
+lw,Weddell seal,Leptonychotes weddellii,,195932
+pp,Harbour porpoise,Phocoena phocoena,,137117
+hp,Harbour porpoise,Phocoena phocoena,,137117
+dl,Beluga,Delphinapterus leucas,,137115
+pa,Adelie penguin,Pygoscelis adeliae,,225757
+bm,Bowhead whale,Balaena mysticetus,,137086
+bm,Blue whale,Balaenoptera musculus,,137090
+bw,Blue whale,Balaenoptera musculus,,137090
+mn,Humpback whale,Megaptera novaeangliae,,137092
+eg,North atlantic right whale,Eubalaena glacialis,,159023
+rw,North atlantic right whale,Eubalaena glacialis,,159023
+mb,Sowerby's beaked whale,Mesoplodon bidens,,137121
+bb,Bryde's whale,Balaenoptera brydei,,242603
+gm,Long-finned pilot whale,Globicephala melas,,137097
+pw,Long-finned pilot whale,Globicephala melas,,137097
+bp,Fin whale,Balaenoptera physalus,,137091

@@ -24,11 +24,11 @@ savepath
 % 2-letter Latin species initials, 2-digit year, underscore,
 % 3-digit Julian day of year, 1-letter animal of the day.
 % This should match THE DTG FILE NAMES
-depid = 'bw211b' ;
+depid = 'bw218a'; %'bw211b' ;
 
 % Make a name for the nc file that you are going to create. Make sure the
 % year is included in this one
-ncname = 'bw14_211b'; % if nc file and depid are the same 
+ncname = 'bw14_218a'; % 'bw13_214c'; % 'bw13_193a'; %'bw14_211b'; % if nc file and depid are the same 
 % ncname = [depid 'your_addition_here'] ; # to append something, might work
 
 % Give the directory where the raw tag data (wav, swv, etc.) are stored.
@@ -59,7 +59,7 @@ settagpath('cal', [base_dir ncname '/TAG data'], ... % where *cal.xml files are
 % TagTools/matlab/tagiofuns/species.csv has information about various study species 
 % (if additions are needed). 
 
-socal_prh2nc(ncname, 'bs', 'socal_project_info', 1, ncdir);
+socal_prh2nc(ncname, 'bs', 'socal_project_info', 1, ncdir, recdir);
 
 % note: if you get the message:
 % Cue file for bw14_211b not found - run d3getcues or read_d3
