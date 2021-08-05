@@ -1,11 +1,13 @@
-function    SA = socal_sound_archive(depid)
+function    SA = socal_sound_archive(depid, recdir)
 
-%    SA = socal_sound_archive(depid)   % use default name
+%    SA = socal_sound_archive(depid, recdir)   % use default name
 %
 %    Generate a sound archive structure for a deployment.
 %
 %    Inputs:
 %    depid is a string containing the deployment identifier.
+%    recdir is the directory where the wav files are located (needed to
+%    build dtag2 cuetab from scratch if it's not in the CAL file)
 %
 %    Returns:
 %    X is a sound archive structure with metadata fields pre-populated. 
@@ -35,15 +37,58 @@ if dtagtype(depid) == 3
         fprintf('No directory for this deployment - run d3getcues\n') ;
         return
     end
-    audio_start_time = datestr(d3datevec(ref_time),'yyyy/mm/dd HH:MM:SS.FFF');
+    audio_start_time = datestr(d3datevec(ref_time),'yyyy-mm-dd HH:MM:SS.FFF');
 elseif dtagtype(depid) == 2
-    [ct,ref_time,fs,fn] = d2getcues([],depid) ;
-    if isempty(fn),
-        fprintf('No directory for this deployment - run d2getcues\n') ;
-        return
+    try
+        [N,chips,fnames, ref_time, chnk] = socal_makecuetab(recdir, depid) ;
+        % N.N is the cuetab in DTAG2 format so it has
+        % filenumber, pps_at_start,nsamples,number of errors,fs,compression
+        if isstruct(N)
+            N = N.N; % cuetab in dtag2 format
+        end
+        % we want dtag3 format with cols:
+        %        1. File number
+        %        2. Start time of block (seconds since ref time)
+        %        %        documentation says this is there but it's not so it won't be for us either: Microsecond offset to first sample in block
+        %        3. Number of samples in the block
+        %        4. Status of block (1=zero-filled, 0=data bearing, -1=data gap)
+        fs = mean(round(N(:,5)));
+        fn = fnames ;
+        ct = N(:, 1:4) ;
+        % convert first column from "chip number" to file number
+        ct(:,1) = 1:size(ct,1);
+        % convert last col from # of errors to status of block (1=zero-filled, 0=data bearing, -1=data gap)
+        ct(:,4) = 0; % all "data bearing" -- we know # errors but not where they are so can't document that in this cuetab
+        audio_start_time = datestr(ref_time, 'yyyy-mm-dd HH:MM:SS.FFF');
+    catch
+        % if failure, look for CUETAB in CAL file
+        % (problem is this doesn't give us file names so we need to make them).
+        % and we assume they are same ones used to make existing cuetab
+        wavlist = dir([recdir '/*.wav']);
+        fn = {wavlist.name};
+        DEPLOY = loadcal(depid);
+        if isfield(DEPLOY, 'CUETAB')
+            if isstruct(DEPLOY.CUETAB)
+                if isfield(DEPLOY.CUETAB, 'N')
+                    N = DEPLOY.CUETAB.N; % cuetab in dtag2 format
+                end
+            else
+                N = DEPLOY.CUETAB;
+            end
+        end
+        fs = mean(round(N(:,5)));
+        fn = {'UNKNOWN'} ;
+        ct = N(:, 1:4) ;
+        % convert first column from "chip number" to file number
+        ct(:,1) = 1:size(ct,1);
+        % convert last col from # of errors to status of block (1=zero-filled, 0=data bearing, -1=data gap)
+        ct(:,4) = 0; % all "data bearing" -- we know # errors but not where they are so can't document that in this cuetab
+        if isfield(DEPLOY,'TAGON')
+            audio_start_time = datestr(datenum(DEPLOY.TAGON(:)'), 'yyyy-mm-dd HH:MM:SS.FFF');
+        else
+            audio_start_time = 'UNKNOWN';
+        end
     end
-    audio_start_time = datestr(ref_time, 'yyyy/mm/dd HH:MM:SS.FFF');
-
 end
 
 sz = zeros(length(fn),1) ;
@@ -68,12 +113,12 @@ X.file_resolution = 16 ;
 X.file_compression = 'none' ;
 X.file_size = sz ;
 X.file_size_unit = 'samples' ;
-X.file_location = 'SMRU, Univ St Andrews, St Andrews, Fife KY16 8LB, UK' ;
+X.file_location = 'Southall Environmental Associates, Inc., Aptos, CA' ;
 X.file_url = '' ;
 X.file_doi = '' ;
-X.file_contact_email = 'mj26@st-andrews.ac.uk' ;
-X.file_contact_person = 'Mark Johnson' ;
-X.file_contact_url = 'www.soundtags.org' ;
+X.file_contact_email = 'brandon.southall@sea-inc.net' ;
+X.file_contact_person = 'Brandon Southall' ;
+X.file_contact_url = 'https://www.sea.com/' ;
 X.archive_status = 'complete' ;
 X.channel_num = 1 ;
 X.channel_separation = 0 ;
@@ -107,6 +152,6 @@ X.selfnoise_file = fn{1} ;
 X.selfnoise_cue_start = 0 ;
 X.selfnoise_cue_end = 6 ;
 X.selfnoise_cue_unit = 'second into file' ;
-X.creation_date = datestr(now,'yyyy/mm/dd HH:MM:SS') ;
+X.creation_date = datestr(now,'yyyy-mm-dd HH:MM:SS.FFF') ;
 X.history = 'd3getcues,sound_archive' ;
 SA = orderfields(X) ;

@@ -120,7 +120,7 @@ end
 ton = datestr(TAGON(:)',info.dephist_device_regset) ;
 info.dephist_deploy_datetime_start = ton ;
 info.dephist_device_datetime_start = ton ;
-if ~isfield(info, 'device_serial') % make_info should add this, if not try to fetch from cal file
+if strcmp(info.device_serial, 'UNKNOWN') % make_info should add this, if not try to fetch from cal file
     try
         info.device_serial = TAGID ;
     catch

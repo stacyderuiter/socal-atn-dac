@@ -102,12 +102,8 @@ add_nc([ncdir '/' ncname], head)
 
 % #########################################################################
 % Read in metadata about acoustic data in wav files, save in SA structure
-d3getcues(recdir, depid) ;
-SA = sound_archive(depid);
-SA.file_location = 'SEA, Inc., Aptos, CA 95003, USA';
-SA.file_contact_email = info.provider_email;
-SA.file_contact_person = info.provider_name;
-SA.file_contact_url = 'https://sea-inc.net/';
+d3getcues(recdir, depid) ; % note: could put this inside sound_archive but have not
+SA = sound_archive(depid, recdir);
 SA.depid = ncname ;
 % save it in the nc file
 add_nc([ncdir '/' ncname], SA)

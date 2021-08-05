@@ -113,7 +113,7 @@ while done==0,
    l = fgetl(f) ;
    done = isempty(l) ;
    if ~done,
-    %  fprintf('%s\n',l) ;
+      fprintf('%s\n',l) ;
    end
   if contains(l, 'recording started:')
       hex_ref_time = l((end-8):end) ;

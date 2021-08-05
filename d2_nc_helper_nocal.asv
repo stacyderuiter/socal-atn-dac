@@ -106,8 +106,15 @@ add_nc([ncdir '/' ncname], head)
 % #########################################################################
 % Read in metadata about acoustic data in wav files, save in SA structure
 % doing this now in sound_archive [ct,ref_time,fs,fn] = d2getcues(recdir, ncname) ;
-SA = socal_sound_archive(ncname, recdir); % will spit out a lot of info to screen, sorry
+SA = socal_sound_archive(ncname);
 SA.depid = ncname ;
+
+% if you got warning:
+% CUETAB info pulled from cal file; consider adding .wav file names manually to SA structure
+% then (and only then) do these 3 lin:
+% wavlist = dir([recdir '/*.wav']);
+% SA.file_names = char(join({wavlist.name}, ','));
+% SA.file_numbers = length(wavlist);
 
 % save it in the nc file
 add_nc([ncdir '/' ncname], SA)
