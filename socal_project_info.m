@@ -37,14 +37,14 @@ info.contributor_role_vocabulary = 'https://vocab.nerc.ac.uk/collection/G04/curr
 
 info.conventions = 'CF-1.6,ACDD-1.3,IOOS-1.2';
 
-info.creator_address = '';
-info.creator_city = '';
+info.creator_address = '9099 Soquel Drive, Suite 8';
+info.creator_city = 'Aptos';
 info.creator_country = 'USA';
 info.creator_email = 'rosscnichols@gmail.com';
 info.creator_institution = 'Southall Environmental Associates, Inc.';
 info.creator_name = 'Ross Nichols';
-info.creator_phone = '';
-info.creator_postalcode = '';
+info.creator_phone = '831 601 1437';
+info.creator_postalcode = '95003';
 info.creator_role = 'contributor, processor';
 info.creator_sector = 'academic';
 info.creator_state = 'California';

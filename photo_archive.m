@@ -41,7 +41,7 @@ else
     for f = [1:length(files)]
         [~,~,EXT] = fileparts(files(f).name);
         EXT = erase(EXT, '.');
-        if EXT == 'xlsx'
+        if EXT == "xlsx"
             p_data = readtable([pdir '/' files(f).name], 'VariableNamingRule', 'preserve');
             these_cols = p_data.Properties.VariableNames ;
             all_cols = union(all_cols, these_cols) ;
