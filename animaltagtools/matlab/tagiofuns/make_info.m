@@ -85,6 +85,7 @@ end
 
 T.depid = depid ;
 T.dtype_datetime_made = datestr(now,T.dephist_device_regset) ;
+T.creation_date = T.dtype_datetime_made ;
 T.dtype_nfiles = 'UNKNOWN' ;
 T.dtype_source = 'UNKNOWN' ;
 T.device_serial = 'UNKNOWN' ;

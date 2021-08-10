@@ -107,7 +107,6 @@ add_nc([ncdir '/' ncname], head)
 % Read in metadata about acoustic data in wav files, save in SA structure
 % doing this now in sound_archive [ct,ref_time,fs,fn] = d2getcues(recdir, ncname) ;
 SA = socal_sound_archive(ncname, recdir); % will spit out a lot of info to screen, sorry
-SA.depid = ncname ;
 
 % save it in the nc file
 add_nc([ncdir '/' ncname], SA)

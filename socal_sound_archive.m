@@ -32,7 +32,18 @@ X.full_name = 'sound_archive' ;
 X.description = 'Sound data archive listing' ;
 
 if dtagtype(depid) == 3
-    [ct,ref_time,fs,fn] = d3getcues([],depid) ;
+    try
+        [ct,ref_time,fs,fn] = d3getcues(recdir,depid) ;
+    catch
+        fn = [];
+    end
+    
+    if length(depid) == 9 && isempty(fn)
+        % try short depid if depid is long and d3getcues didn't load
+        % anything
+        [ct,ref_time,fs,fn] = d3getcues(recdir,[depid(1:2), depid(6:9)]) ;
+    end
+
     if isempty(fn),
         fprintf('No directory for this deployment - run d3getcues\n') ;
         return
@@ -40,7 +51,14 @@ if dtagtype(depid) == 3
     audio_start_time = datestr(d3datevec(ref_time),'yyyy-mm-dd HH:MM:SS.FFF');
 elseif dtagtype(depid) == 2
     try
-        [N,chips,fnames, ref_time, chnk] = socal_makecuetab(recdir, depid) ;
+        try
+            % try full depid
+            [N,chips,fnames, ref_time, chnk] = socal_makecuetab(recdir, depid) ;
+        catch
+            if length(depid) == 9% try short depid
+                [N,chips,fnames, ref_time, chnk] = socal_makecuetab(recdir, [depid(1:2), depid(6:9)]) ;
+            end
+        end
         % N.N is the cuetab in DTAG2 format so it has
         % filenumber, pps_at_start,nsamples,number of errors,fs,compression
         if isstruct(N)
