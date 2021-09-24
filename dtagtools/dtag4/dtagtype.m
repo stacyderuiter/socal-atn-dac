@@ -25,7 +25,7 @@ d2suffix = strcat(tag,'cal.mat') ;
 d2cal = sprintf('%s/%s',getfield(TAG_PATHS,'CAL'),d2suffix) ;
 if exist(d2cal,'file')
    DTAG=2;
-   return
+ %  return % removed b/c there are a few socal d3 tags that have cal files stored as .mat
 end
 
 % If DTAG3, CAL file is stored as .XML
@@ -40,4 +40,4 @@ if SILENT==0,
    disp('No CAL file found when evaluating function dtagtype')
 end
 return
-    
+
