@@ -69,13 +69,14 @@ if dtagtype(depid, 1) == 3,
     try
         [CAL, DEPLOY] =  d3loadcal(depid) ;
        % TAGON = DEPLOY.TAGON ;
-        if isstruct(TAGON)
+        if exist('TAGON','var') && isstruct(TAGON)
             TAGLOC = TAGON.POSITION ;
            % TAGON = TAGON.TAGON ;
         end
         OTAB = DEPLOY.OTAB ;
         TAGID = DEPLOY.ID ;
-        [CUETAB,ref_time,fs,fn,recdir,recn] = d3getcues(recdir,[depid(1:2), depid(6:9)],'swv') ;
+        [CUETAB,ref_time,fs,fn,recdir,recn] = d3getcues(recdir,[depid],'swv');
+        if isempty(fs); error('no swv files found'); end %triggers the catch if fs is empty. Proxy for finding SWV files.
         info = make_info(depid, 'D3', depid(1:2), owner) ;
         TAGON = d3datevec(ref_time) ;
     catch
